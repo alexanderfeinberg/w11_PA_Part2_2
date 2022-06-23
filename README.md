@@ -35,6 +35,8 @@ Download the starter from the Download link at the bottom of this page.
 
 Run `npm install` to install the dependencies listed in the last section.
 
+Run `npm test` to run the all the test specs at any given time.
+
 Create a **.env** file at root-level of your project and copy the contents of
 the **.env.example** file into the newly created **.env** file.
 
