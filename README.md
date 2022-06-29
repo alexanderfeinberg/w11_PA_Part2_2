@@ -63,8 +63,8 @@ that follows this diagram:
 
 ![db-schema-without-relationships]
 
-Create new migrations that will change the database schema to turn the current
-schema into this second diagram.
+**Create new migration files** that will change the database schema to turn the
+current schema into this second diagram.
 
 ![db-schema-with-relationships]
 
