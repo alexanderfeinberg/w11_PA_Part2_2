@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Fan extends Model {
+  class DraftPick extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,26 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Fan.belongsToMany(
-        models.Player,
-        {
-          through:models.DraftPick,
-            foreignKey:'fanId',
-            otherKey:'playerId',
-            onDelete:'CASCADE'
-        }
-      )
+      DraftPick.belongsTo(models.Fan, {foreignKey:'fanId'})
+      DraftPick.belongsTo(models.Player, {foreignKey:'playerId'})
     }
   }
-  Fan.init({
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+  DraftPick.init({
+    fanId: {
+      type:DataTypes.INTEGER,
+      onDelete:'CASCADE'
     },
+    playerId: {
+      type:DataTypes.INTEGER,
+      onDelete:'CASCADE'
+    }
   }, {
     sequelize,
-    modelName: 'Fan',
+    modelName: 'DraftPick',
   });
-  return Fan;
+  return DraftPick;
 };

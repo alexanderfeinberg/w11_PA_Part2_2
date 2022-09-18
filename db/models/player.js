@@ -11,6 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Player.belongsTo(
+        models.Team,
+        {foreignKey:'currentTeamId'}
+      )
+
+      Player.belongsToMany(
+        models.Fan,
+        {
+          through:models.DraftPick,
+          foreignKey:'playerId',
+          otherKey:'fanId'
+        }
+      )
     }
   }
   Player.init({
@@ -31,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false,
     },
+    currentTeamId:{
+      type:DataTypes.INTEGER,
+      allowNull:true
+    }
   }, {
     sequelize,
     modelName: 'Player',
